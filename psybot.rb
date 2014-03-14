@@ -2,6 +2,11 @@ require 'cinch'
 
 #OPS = %w(vaz SyDy safiire Causai akhentek)
 
+class Psytrance
+  include Cinch::Plugin
+
+end
+
 bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.net"
@@ -13,7 +18,7 @@ bot = Cinch::Bot.new do
     m.channel.op(m.user) unless m.channel.opped? m.user
   end
 
-  on :message, /psytrance/ do |m|
+  on :message, /^.*psytrance.*$/ do |m|
     m.reply "psytrance is bad music, #{m.user.nick}"
   end
 end
