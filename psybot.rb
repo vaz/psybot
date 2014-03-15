@@ -25,6 +25,11 @@ bot = Cinch::Bot.new do
     m.reply("Psytrance is bad music")
   end
 
+  on :message, /ya+y/i do |m|
+    m.reply("Yaaaaaaaaaaay!")
+    m.action_reply("explodes!")
+  end
+
 end
 
 bot.start
