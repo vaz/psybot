@@ -6,14 +6,14 @@ require 'cinch'
 ##  Bunch of responses for the bot when he hears a regex
 Responses = {
 
-  /psytrance/i => -> (m){ 
+  /psytrance/i => lambda do |m|
       m.reply("Psytrance is bad music, #{m.user.nick}") 
-  },
+  end,
 
-  /yay/i => -> (m){ 
+  /yay/i => lambda do |m|
       m.reply("Yaaaaaaaay!") 
       m.reply("/me explodes!")
-  }
+  end
 }
 
 
