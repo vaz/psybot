@@ -14,7 +14,7 @@ bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.net"
     c.channels = ["#PsytranceMessiah"]
-    c.nick = ENV['NICK'] || "GiR"
+    c.nick = ENV['NICK'] || "Psykachu"
   end
 
   on :join do |m|
@@ -22,7 +22,7 @@ bot = Cinch::Bot.new do
   end
 
   on :message, /psytrance/i do |m|
-    m.reply("Psytrance is bad music")
+q,   m.reply("Psytrance is bad music, #{m.user.nick}")
   end
 
   on :message, /ya+y/i do |m|
