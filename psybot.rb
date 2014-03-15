@@ -18,8 +18,8 @@ bot = Cinch::Bot.new do
     m.channel.op(m.user) unless m.channel.opped? m.user
   end
 
-  on :message, /^.*psytrance.*$/ do |m|
-    m.reply "psytrance is bad music, #{m.user.nick}"
+  on :message, /^.*[pP]sytrance.*$/ do |m|
+    m.reply "Psytrance is bad music, #{m.user.nick}"
   end
 end
 
