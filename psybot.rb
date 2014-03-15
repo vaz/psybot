@@ -22,7 +22,7 @@ bot = Cinch::Bot.new do
   end
 
   on :message, /psytrance/i do |m|
-q,   m.reply("Psytrance is bad music, #{m.user.nick}")
+     m.reply("Psytrance is bad music, #{m.user.nick}")
   end
 
   on :message, /ya+y/i do |m|
