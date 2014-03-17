@@ -47,16 +47,16 @@ end
 
 RESPONSES = {
   /psy[ -]?trance/i => lambda do |m|
-    unless m.user.user == '~cinch'
-      m.reply "Psytrance is bad music, #{m.user.nick}"
-    end
+    m.reply "Psytrance is bad music, #{m.user.nick}"
   end,
 
   /ya+y/i => lambda do |m|
-    unless m.user.user == '~cinch'
-      m.reply("Yaaaaaaaaaaay!") 
-      m.action_reply("explodes!")
-    end
+    m.reply("Yaaaaaaaaaaay!")
+    m.action_reply("explodes!")
+  end,
+
+  /hi(gh)?[ -]?tech/i => lambda do |m|
+    m.reply "Hi-tech isn't psytrance."
   end
 }
 
@@ -73,7 +73,7 @@ bot = Cinch::Bot.new do
   end
 
   RESPONSES.each do |p, f|
-    on(:message, p) { |m| f[m] }
+    on(:message, p) { |m| fm[m] unless m.user.user == '~cinch' }
   end
 
 end
