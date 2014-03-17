@@ -5,9 +5,14 @@ require 'cinch'
 ####
 ##  Bunch of responses for the bot when he hears a regex
 
-class Psytrance
+class Fortune
   include Cinch::Plugin
 
+  match "fortune"
+
+  def execute(m)
+    m.reply `fortune`
+  end
 end
 
 bot = Cinch::Bot.new do
@@ -15,6 +20,7 @@ bot = Cinch::Bot.new do
     c.server = "irc.freenode.net"
     c.channels = ["#PsytranceMessiah"]
     c.nick = ENV['NICK'] || "Psykachu"
+    c.plugins.plugins = [Fortune]
   end
 
   on :join do |m|
