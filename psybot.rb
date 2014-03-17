@@ -73,7 +73,7 @@ bot = Cinch::Bot.new do
   end
 
   RESPONSES.each do |p, f|
-    on(:message, p) { |m| fm[m] unless m.user.user == '~cinch' }
+    on(:message, p) { |m| f[m] unless m.user.user == '~cinch' }
   end
 
 end
