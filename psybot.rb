@@ -25,6 +25,12 @@ class Say
   end
 end
 
+module Cinch::Respond
+  def respond_to(pattern)
+    on(:message, pattern) { |m| yield m unless m.user.user == '~cinch' }
+  end
+end
+
 class Reload
   include Cinch::Plugin
 
@@ -45,22 +51,9 @@ class Reload
   end
 end
 
-RESPONSES = {
-  /psy[ -]?trance/i => lambda do |m|
-    m.reply "Psytrance is bad music, #{m.user.nick}"
-  end,
-
-  /ya+y/i => lambda do |m|
-    m.reply("Yaaaaaaaaaaay!")
-    m.action_reply("explodes!")
-  end,
-
-  /hi(gh)?[ -]?tech/i => lambda do |m|
-    m.reply "Hi-tech isn't psytrance."
-  end
-}
-
 bot = Cinch::Bot.new do
+  extend Cinch::Respond
+
   configure do |c|
     c.server = "irc.freenode.net"
     c.channels = [CHANNEL]
@@ -72,8 +65,17 @@ bot = Cinch::Bot.new do
     m.channel.op(m.user) unless m.channel.opped? m.user
   end
 
-  RESPONSES.each do |p, f|
-    on(:message, p) { |m| f[m] unless m.user.user == '~cinch' }
+  respond_to(/psy[ -]?trance/i) do |m|
+    m.reply "Psytrance is bad music, #{m.user.nick}"
+  end
+
+  respond_to(/ya+y/i) do |m|
+    m.reply("Yaaaaaaaaaaay!")
+    m.action_reply("explodes!")
+  end
+
+  respond_to(/hi(gh)?[ -]?tech/i) do |m|
+    m.reply "Hi-tech isn't psytrance."
   end
 
 end
