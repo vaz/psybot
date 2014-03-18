@@ -1,3 +1,4 @@
+require 'bundler/setup'
 require 'cinch'
 
 require_relative 'plugins/fortune'
