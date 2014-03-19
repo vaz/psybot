@@ -9,7 +9,6 @@ require_relative 'plugins/reload'
 CHANNEL = ENV['CHANNEL'] || '#PsytranceMessiah'
 NICK = ENV['NICK'] || 'psykachu'
 
-
 module Cinch::Respond
   def respond_to(pattern)
     on(:message, pattern) { |m| yield m unless m.user.user == '~cinch' }
@@ -32,6 +31,10 @@ bot = Cinch::Bot.new do
 
   respond_to(/psy[ -]?trance/i) do |m|
     m.reply "Psytrance is bad music, #{m.user.nick}"
+  end
+
+  respond_to(/spytrance/i) do |m|
+    m.reply ("Spytrance is good music, unlike that psytrance that we all hate.")
   end
 
   respond_to(/ya+y/i) do |m|
