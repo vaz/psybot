@@ -22,6 +22,7 @@ bot = Cinch::Bot.new do
     c.server = "irc.freenode.net"
     c.channels = [CHANNEL]
     c.nick = NICK
+    c.ssl.use = true
     c.plugins.plugins = [Fortune, Say, Reload]
   end
 
