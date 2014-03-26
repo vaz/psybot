@@ -13,6 +13,7 @@ class Reload
 
   def joined(m)
     if @reloading && m.user.nick == NICK
+      Channel(CHANNEL).op(m.user)
       @bot.quit 'I have become obsolete, goodbye.'
     end
   end
