@@ -5,7 +5,7 @@ class Reload
   listen_to(:join, method: :joined)
 
   def execute(m)
-    @bot.nick += '_reloading'
+    @bot.nick += '_reload'
     system "git pull"
     spawn "NICK='#{NICK}' CHANNEL='#{CHANNEL}' ruby #{$0}"
     @reloading = true
