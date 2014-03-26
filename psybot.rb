@@ -46,6 +46,10 @@ bot = Cinch::Bot.new do
     m.reply "Hi-tech isn't psytrance."
   end
 
+  respond_to(/#{NICK}/i) do |m|
+    m.action_reply "looks at #{m.user.nick} excitedly!"
+  end
+
 end
 
 bot.start
