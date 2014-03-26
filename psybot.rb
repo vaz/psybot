@@ -4,6 +4,7 @@ require 'cinch'
 require_relative 'plugins/fortune'
 require_relative 'plugins/say'
 require_relative 'plugins/reload'
+require_relative 'plugins/ekto'
 
 
 CHANNEL = ENV['CHANNEL'] || '#PsytranceMessiah'
@@ -22,7 +23,7 @@ bot = Cinch::Bot.new do
     c.server = "irc.freenode.net"
     c.channels = [CHANNEL]
     c.nick = NICK
-    c.plugins.plugins = [Fortune, Say, Reload]
+    c.plugins.plugins = [Fortune, Say, Reload, Ekto]
   end
 
   on :join do |m|
