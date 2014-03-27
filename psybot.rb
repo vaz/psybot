@@ -24,7 +24,8 @@ bot = Cinch::Bot.new do
     c.channels = [CHANNEL]
     c.nick = NICK
     c.plugins.plugins = [Fortune, Say, Reload, Ekto,
-                         Cinch::Plugins::UrbanDictionary]
+                         Cinch::Plugins::UrbanDictionary,
+                         Cinch::Plugins::Haiku]
   end
 
   on :join do |m|

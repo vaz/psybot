@@ -2,12 +2,19 @@ GEM
   remote: https://rubygems.org/
   specs:
     cinch (2.1.0)
+    cinch-haiku (0.0.1)
+      cinch (~> 2.0)
+      nokogiri
     cinch-urbandictionary (0.10.1)
       cinch (~> 2.0)
+    mini_portile (0.5.3)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   cinch
+  cinch-haiku
   cinch-urbandictionary
