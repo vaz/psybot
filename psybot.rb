@@ -1,6 +1,6 @@
 require 'bundler/setup'
 require 'cinch'
-
+require 'cinch/plugins/urbandictionary'
 require_relative 'plugins/fortune'
 require_relative 'plugins/say'
 require_relative 'plugins/reload'
@@ -23,7 +23,8 @@ bot = Cinch::Bot.new do
     c.server = "irc.freenode.net"
     c.channels = [CHANNEL]
     c.nick = NICK
-    c.plugins.plugins = [Fortune, Say, Reload, Ekto]
+    c.plugins.plugins = [Fortune, Say, Reload, Ekto,
+                         Cinch::Plugins::UrbanDictionary]
   end
 
   on :join do |m|

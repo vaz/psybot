@@ -2,9 +2,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     cinch (2.1.0)
+    cinch-urbandictionary (0.10.1)
+      cinch (~> 2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   cinch
+  cinch-urbandictionary
