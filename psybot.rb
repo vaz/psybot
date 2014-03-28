@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'cinch'
 require 'cinch/plugins/urbandictionary'
+require 'cinch/plugins/haiku'
 require_relative 'plugins/fortune'
 require_relative 'plugins/say'
 require_relative 'plugins/reload'
