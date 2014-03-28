@@ -31,6 +31,7 @@ bot = Cinch::Bot.new do
 
   on :join do |m|
     m.channel.op(m.user) unless m.channel.opped?(m.user) || m.user == @bot
+    m.reply("Have some opiates, #{m.user.nick}!")
   end
 
   respond_to(/psy[ -]?trance/i) do |m|
