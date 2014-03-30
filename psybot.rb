@@ -44,8 +44,8 @@ module Cinch::FiendyGreet
   end
 
   def greet (m, &block)
-    same_user = @last_login == m.user.authname
-    @last_login = m.user.authname
+    same_user = @last_login == m.user.realname
+    @last_login = m.user.realname
 
     if saf_hates_ops(m)
       m.reply "I hear you hate OPIATES, #{m.user.nick}! ;)"
