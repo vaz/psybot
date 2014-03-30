@@ -12,13 +12,61 @@ CHANNEL = ENV['CHANNEL'] || '#PsytranceMessiah'
 NICK = ENV['NICK'] || 'psykachu'
 
 module Cinch::Respond
+
   def respond_to(pattern)
     on(:message, pattern) { |m| yield m unless m.user.user == '~cinch' }
   end
+
 end
+
+
+module Cinch::FiendyGreet
+
+  @drug_classes ||= %w(
+    deliriants
+    psychedelics
+    uppers
+    downers
+    benzos
+    dissociatives
+    NMDA_antagonists
+    amphetamines
+    bath_salts
+    anticholinergics
+    entheogens
+    arylcyclohexylamines
+  ).map! do |drug|
+    drug.gsub('_', ' ')
+  end
+
+  def saf_hates_ops(m)
+    return m.user.nick == 'safiire' || m.user.nick == 'safk'
+  end
+
+  def greet (m, &block)
+    same_user = @last_login == m.user
+    @last_login = m.user
+
+    if saf_hates_ops(m)
+      m.reply "I hear you hate OPIATES, #{m.user.nick}! ;)"
+      return
+    elsif same_user
+      m.reply "Have some #{@drug_classes.sample}, #{m.user.nick}!"
+    else
+      m.reply "Have some OPIATES, #{m.user.nick}!"
+    end
+
+    block.call
+  end
+
+end
+
+include Cinch::FiendyGreet
 
 bot = Cinch::Bot.new do
   extend Cinch::Respond
+
+  @last_login = @bot
 
   configure do |c|
     c.server = "irc.freenode.net"
@@ -30,8 +78,7 @@ bot = Cinch::Bot.new do
   end
 
   on :join do |m|
-    m.channel.op(m.user) unless m.channel.opped?(m.user) || m.user == @bot
-    m.reply "Have some OPIATES, #{m.user.nick}!"
+    Cinch::FiendyGreet.greet(m) { m.channel.op(m.user) unless m.channel.opped?(m.user) || m.user == @bot }
   end
 
   respond_to(/psy[ -]?trance/i) do |m|
