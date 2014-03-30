@@ -44,13 +44,15 @@ module Cinch::FiendyGreet
   end
 
   def greet (m, &block)
-    same_user = @last_login == m.user
-    @last_login = m.user
+    same_user = @last_login == m.user.authname
+    @last_login = m.user.authname
 
     if saf_hates_ops(m)
       m.reply "I hear you hate OPIATES, #{m.user.nick}! ;)"
       return
-    elsif same_user
+    end
+
+    if same_user
       m.reply "Have some #{@drug_classes.sample}, #{m.user.nick}!"
     else
       m.reply "Have some OPIATES, #{m.user.nick}!"
@@ -100,6 +102,10 @@ bot = Cinch::Bot.new do
 
   respond_to(/#{NICK}/i) do |m|
     m.action_reply "looks at #{m.user.nick} excitedly!"
+  end
+
+  respond_to('test') do |m|
+    m.reply "#{m.inspect}"
   end
 
 end
