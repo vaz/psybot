@@ -104,6 +104,11 @@ bot = Cinch::Bot.new do
     m.action_reply "looks at #{m.user.nick} excitedly!"
   end
 
+  respond to (/#{NICK}.*(gi(ve |m)me|i .*).*op(iate)?s/i do |m|
+    m.reply "You are a fiend, #{m.user.nick}!"
+    m.action_reply "/op #{m.user.nick}"
+  end
+
   respond_to('test') do |m|
     m.reply "#{m.inspect}"
   end
