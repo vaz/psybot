@@ -49,13 +49,13 @@ module Cinch::FiendyGreet
 
     if saf_hates_ops(m)
       m.reply "I hear you hate OPIATES, #{m.user.nick}! ;)"
-      return
-    end
-
-    if same_user
-      m.reply "Have some #{@drug_classes.sample}, #{m.user.nick}!"
+      m.reply "but here's ops anyway so we don't get screwed again"
     else
-      m.reply "Have some OPIATES, #{m.user.nick}!"
+      if same_user
+        m.reply "Have some #{@drug_classes.sample}, #{m.user.nick}!"
+      else
+        m.reply "Have some OPIATES, #{m.user.nick}!"
+      end
     end
 
     block.call
@@ -104,9 +104,9 @@ bot = Cinch::Bot.new do
     m.action_reply "looks at #{m.user.nick} excitedly!"
   end
 
-  respond to (/#{NICK}.*(gi(ve |m)me|i .*).*op(iate)?s/i do |m|
+  respond_to(/#{NICK}.*(gi(ve |m)me.*).*op(iate)?s/i) do |m|
     m.reply "You are a fiend, #{m.user.nick}!"
-    m.action_reply "/op #{m.user.nick}"
+    m.channel.op(m.user)
   end
 
   respond_to('test') do |m|
