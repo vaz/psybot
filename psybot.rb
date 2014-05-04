@@ -43,7 +43,7 @@ module Cinch::FiendyGreet
     return m.user.nick == 'safiire' || m.user.nick == 'safk'
   end
 
-  def greet (m, &block)
+  def greet (m)
     same_user = @last_login == m.user.realname
     @last_login = m.user.realname
 
@@ -57,8 +57,6 @@ module Cinch::FiendyGreet
         m.reply "Have some OPIATES, #{m.user.nick}!"
       end
     end
-
-    block.call
   end
 
 end
@@ -80,7 +78,8 @@ bot = Cinch::Bot.new do
   end
 
   on :join do |m|
-    Cinch::FiendyGreet.greet(m) { m.channel.op(m.user) unless m.channel.opped?(m.user) || m.user == @bot }
+    Cinch::FiendyGreet.greet(m)
+    m.channel.op(m.user) unless m.channel.opped?(m.user) || m.user == @bot
   end
 
   respond_to(/psy[ -]?trance/i) do |m|
