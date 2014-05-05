@@ -14,7 +14,7 @@ NICK = ENV['NICK'] || 'psykachu'
 module Cinch::Respond
 
   def respond_to(pattern)
-    on(:message, pattern) { |m| yield m unless m.user.user == '~cinch' }
+    on(:message, pattern) { |m| yield m unless m.user.user == 'psykachu' }
   end
 
 end
