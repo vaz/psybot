@@ -23,6 +23,7 @@ end
 module Cinch::FiendyGreet
 
   @drug_classes ||= %w(
+    OPIATES
     deliriants
     psychedelics
     uppers
@@ -39,24 +40,8 @@ module Cinch::FiendyGreet
     drug.gsub('_', ' ')
   end
 
-  def saf_hates_ops(m)
-    return m.user.nick == 'safiire' || m.user.nick == 'safk'
-  end
-
   def greet (m)
-    same_user = @last_login == m.user.realname
-    @last_login = m.user.realname
-
-    if saf_hates_ops(m)
-      m.reply "I hear you hate OPIATES, #{m.user.nick}! ;)"
-      m.reply "but here's ops anyway so we don't get screwed again"
-    else
-      if same_user
-        m.reply "Have some #{@drug_classes.sample}, #{m.user.nick}!"
-      else
-        m.reply "Have some OPIATES, #{m.user.nick}!"
-      end
-    end
+    m.reply "Have some #{@drug_classes.sample}, #{m.user.nick}!"
   end
 
 end
@@ -79,7 +64,7 @@ bot = Cinch::Bot.new do
 
   on :join do |m|
     Cinch::FiendyGreet.greet(m)
-    m.channel.op(m.user) unless m.channel.opped?(m.user) || m.user == @bot
+    m.channel.op(m.user) unless m.user == @bot
   end
 
   respond_to(/psy[ -]?trance/i) do |m|
