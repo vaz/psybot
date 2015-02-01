@@ -12,11 +12,9 @@ CHANNEL = ENV['CHANNEL'] || '#PsytranceMessiah'
 NICK = ENV['NICK'] || 'psykachu'
 
 module Cinch::Respond
-
   def respond_to(pattern)
     on(:message, pattern) { |m| yield m unless m.user.user == '~cinch' }
   end
-
 end
 
 
@@ -30,15 +28,13 @@ module Cinch::FiendyGreet
     downers
     benzos
     dissociatives
-    NMDA_antagonists
+    NMDA\ antagonists
     amphetamines
-    bath_salts
+    bath\ salts
     anticholinergics
     entheogens
     arylcyclohexylamines
-  ).map! do |drug|
-    drug.gsub('_', ' ')
-  end
+  )
 
   def greet (m)
     m.reply "Have some #{@drug_classes.sample}, #{m.user.nick}!"
@@ -57,9 +53,14 @@ bot = Cinch::Bot.new do
     c.server = "irc.freenode.net"
     c.channels = [CHANNEL]
     c.nick = NICK
-    c.plugins.plugins = [Fortune, Say, Reload, Ekto,
-                         Cinch::Plugins::UrbanDictionary,
-                         Cinch::Plugins::Haiku]
+    c.plugins.plugins = [
+      Fortune,
+      Say,
+      Reload,
+      Ekto,
+      Cinch::Plugins::UrbanDictionary,
+      Cinch::Plugins::Haiku
+    ]
   end
 
   on :join do |m|
